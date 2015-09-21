@@ -2,8 +2,6 @@
 
 namespace FlatBits;
 
-use Sunra\PhpSimple\HtmlDomParser;
-
 class BitsOfVideo
 {
     /**
@@ -41,7 +39,7 @@ class BitsOfVideo
      */
     public function loadVideo(){
         if($this->sources === null) {
-            $videoInfo = self::fetch("http://youtube.com/get_video_info?video_id=$this->videoId");
+            $videoInfo = CurlUtil::fetch("http://youtube.com/get_video_info?video_id=$this->videoId");
             $videoData = array();
             parse_str($videoInfo, $videoData);
 
@@ -92,8 +90,18 @@ class BitsOfVideo
         return array_map(function($o){return array_keys($o);}, $this->sources);
     }
 
-    public function download($type, $quality, $folderPath){
+    /**
+     * @param string $type
+     * @param string $quality
+     * @param string $folderPath
+     * @return bool
+     */
+    public function download($type='video/mp4', $quality='medium', $folderPath='../cache/videos/'){
         $success = false;
+
+        if (!is_dir($folderPath)) {
+            mkdir($folderPath, 0777, true);
+        }
 
         $videoSource = $this->getVideoSource($type, $quality);
         if($videoSource !== null){
@@ -107,59 +115,17 @@ class BitsOfVideo
             $folderPath .= (substr($folderPath, -1) == '/' ? '' : '/');
 
             // Add playlist numbering if present
-            $prefix = $this->playlistIndex != null ? "$this->playlistIndex. " : '';
+            $prefix = $this->playlistIndex !== null ? "$this->playlistIndex. " : '';
 
             // Glue the filename together
             $filename = $prefix.$this->videoTitle.".$ext";
 
             // Download
             file_put_contents($folderPath.$filename, fopen($vidUrl, 'r'));
+
+            $success = true;
         }
 
         return $success;
-    }
-
-    /**
-     * @param string $playlistId
-     * @return array an array of BitsOfVideo from all the video of the playlist
-     */
-    public static function fromPlaylist($playlistId){
-        $videoBits = null;
-
-        $playListHtmlString = self::fetch("https://www.youtube.com/playlist?list=$playlistId");
-
-        $playListHtml = HtmlDomParser::str_get_html($playListHtmlString);
-        $videosHtml = $playListHtml->find('tr.pl-video');
-
-        $videoIds = array();
-        foreach($videosHtml as $vidHtml){
-            $videoIds[] = $vidHtml->getAttribute('data-video-id');
-        }
-
-        if(!empty($videoIds)){
-            $videoBits = array_map(function($o, $i){return new BitsOfVideo($o, $i);}, $videoIds, array_keys($videoIds));
-        }
-
-        return $videoBits;
-    }
-
-    /**
-     * @param string $url
-     * @return string
-     */
-    private static function fetch($url){
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => $url,
-            CURLOPT_HEADER => 0,
-            CURLOPT_AUTOREFERER => TRUE,
-            CURLOPT_FOLLOWLOCATION => TRUE
-        ));
-        $resp = curl_exec($curl);
-        curl_close($curl);
-
-        return $resp;
     }
 }
