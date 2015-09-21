@@ -1,0 +1,16 @@
+{
+    "name": "flatbits/musicbits",
+    "type": "library",
+    "description": "Open sourced youtube mp3 extractor",
+    "homepage": "http://flatbits.com",
+    "license": "Apache-2.0",
+    "require": {
+        "google/apiclient": "1.0.*@beta",
+        "sunra/php-simple-html-dom-parser": "v1.5.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    }
+}
