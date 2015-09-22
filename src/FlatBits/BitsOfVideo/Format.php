@@ -31,6 +31,12 @@ abstract class Format
     abstract function getTypeString();
 
     /**
+     * Meant to be overridden by child classes who have special process after download (like audio format)
+     * @param string $filePath
+     */
+    public function postDownload($filePath){}
+
+    /**
      * @return string
      */
     function getQuality(){

@@ -127,10 +127,13 @@ class VideoBits
             $prefix = $this->playlistIndex !== null ? "$this->playlistIndex. " : '';
 
             // Glue the filename together
-            $filename = $prefix.$this->videoTitle.".$ext";
+            $filename = $folderPath.$prefix.$this->videoTitle.".$ext";
 
             // Download
-            file_put_contents($folderPath.$filename, fopen($vidUrl, 'r'));
+            file_put_contents($filename, fopen($vidUrl, 'r'));
+
+            // Invoke the format post download
+            $format->postDownload($filename);
 
             $success = true;
         }
