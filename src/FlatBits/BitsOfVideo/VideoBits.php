@@ -1,8 +1,10 @@
 <?php
 
-namespace FlatBits;
+namespace FlatBits\BitsOfVideo;
 
-class BitsOfVideo
+use FlatBits\CurlUtil;
+
+class VideoBits
 {
     /**
      * Id of the video it represents
@@ -28,6 +30,7 @@ class BitsOfVideo
 
     /**
      * @param string $videoId
+     * @param int|null $playlistIndex
      */
     public function __construct($videoId, $playlistIndex = null){
         $this->videoId = $videoId;
@@ -35,7 +38,7 @@ class BitsOfVideo
     }
 
     /**
-     * @param string $videoId
+     * Actually fetch and parse the video info
      */
     public function loadVideo(){
         if($this->sources === null) {

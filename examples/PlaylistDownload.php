@@ -1,7 +1,9 @@
 <?php
+
 require_once('../vendor/autoload.php');
 
-use FlatBits\VideoCollection;
+use FlatBits\BitsOfVideo\VideoCollection;
+
 
 ini_set('display_startup_errors',1);
 ini_set('display_errors',1);

@@ -1,14 +1,14 @@
 <?php
 
-namespace FlatBits;
+namespace FlatBits\BitsOfVideo;
 
-
+use FlatBits\CurlUtil;
 use Sunra\PhpSimple\HtmlDomParser;
 
 class VideoCollection
 {
     private $videoIds = array();
-    private $bitsOfVideoCache = array();
+    private $videoBitsCache = array();
 
     /**
      * @param string $videoId
@@ -32,22 +32,22 @@ class VideoCollection
 
     /**
      * @param int $index
-     * @return BitsOfVideo|null
+     * @return VideoBits|null
      */
-    public function getBitsOfVideo($index){
-        $bitsOfVideo = null;
+    public function getVideoBits($index){
+        $videoBits = null;
 
         if(array_key_exists($index, $this->videoIds)){
             $videoId = $this->videoIds[$index];
 
-            if(array_key_exists($videoId, $this->bitsOfVideoCache)){
-                $bitsOfVideo = $this->bitsOfVideoCache[$videoId];
+            if(array_key_exists($videoId, $this->videoBitsCache)){
+                $videoBits = $this->videoBitsCache[$videoId];
             } else {
-                $this->bitsOfVideoCache[$videoId] = $bitsOfVideo = new BitsOfVideo($videoId, $index);
+                $this->videoBitsCache[$videoId] = $videoBits = new VideoBits($videoId, $index);
             }
         }
 
-        return $bitsOfVideo;
+        return $videoBits;
     }
 
     /**
@@ -59,7 +59,7 @@ class VideoCollection
     public function downloadAll($type='video/mp4', $quality='medium', $folderPath='../cache/videos/'){
         $success = true;
         foreach($this->videoIds as $index=>$videoId){
-            $success = $success && $this->getBitsOfVideo($index)->download($type, $quality, $folderPath);
+            $success = $success && $this->getVideoBits($index)->download($type, $quality, $folderPath);
             if(!$success){
                 break;
             }
