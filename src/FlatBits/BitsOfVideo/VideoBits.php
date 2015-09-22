@@ -99,11 +99,16 @@ class VideoBits
      * @param string $folderPath
      * @return bool
      */
-    public function download($type='video/mp4', $quality='medium', $folderPath='../cache/videos/'){
+    public function download($type=Format::TYPE_MP4, $quality=null, $folderPath='../cache/videos/'){
         $success = false;
 
         if (!is_dir($folderPath)) {
             mkdir($folderPath, 0777, true);
+        }
+
+        // Check if we need to get the default quality
+        if($quality === null){
+            $quality = Format::getDefaultQuality($type);
         }
 
         $videoSource = $this->getVideoSource($type, $quality);

@@ -56,7 +56,7 @@ class VideoCollection
      * @param string $folderPath
      * @return bool
      */
-    public function downloadAll($type='video/mp4', $quality='medium', $folderPath='../cache/videos/'){
+    public function downloadAll($type=Format::TYPE_MP4, $quality=null, $folderPath='../cache/videos/'){
         $success = true;
         foreach($this->videoIds as $index=>$videoId){
             $success = $success && $this->getVideoBits($index)->download($type, $quality, $folderPath);
