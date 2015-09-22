@@ -1,1 +1,3 @@
-# Bits of Video - PHP Youtube Video Extractor
+# Bits of Video - PHP Youtube Audio and Video Extractor
+
+Documentation coming soon...
