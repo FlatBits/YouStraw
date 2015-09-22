@@ -33,8 +33,19 @@ class Mp3 extends Format{
         // Generate the mp3 filepath from the mp4 one
         $mp3FilePath = substr($filePath, 0, -1).'3';
 
-        $video->save(new \FFMpeg\Format\Audio\Mp3(), $mp3FilePath);
+        // Configure the format
+        $audioFormat = new \FFMpeg\Format\Audio\Mp3();
+        if($this->getQuality() == self::QUALITY_HIGH){
+            $bitrate = 320;
+        } else {
+            $bitrate = 192;
+        }
+        $audioFormat->setAudioKiloBitrate($bitrate);
 
+        // Do the conversion
+        $video->save($audioFormat, $mp3FilePath);
+
+        // Delete the video file
         unlink($filePath);
     }
 }
