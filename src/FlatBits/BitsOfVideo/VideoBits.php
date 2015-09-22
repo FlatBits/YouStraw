@@ -2,6 +2,7 @@
 
 namespace FlatBits\BitsOfVideo;
 
+use FlatBits\BitsOfVideo\Format\Mp4;
 use FlatBits\CurlUtil;
 
 class VideoBits
@@ -95,23 +96,23 @@ class VideoBits
 
     /**
      * @param string $folderPath
-     * @param string $type
-     * @param string $quality
+     * @param Format $format
      * @return bool
      */
-    public function download($folderPath='../cache/videos/', $type=Format::TYPE_MP4, $quality=null){
+    public function download($folderPath='../cache/videos/', $format=null){
         $success = false;
 
         if (!is_dir($folderPath)) {
             mkdir($folderPath, 0777, true);
         }
 
-        // Check if we need to get the default quality
-        if($quality === null){
-            $quality = Format::getDefaultQuality($type);
+        // Format default checking
+        if($format == null){
+            $format = new Mp4();
         }
+        $type = $format->getTypeString();
 
-        $videoSource = $this->getVideoSource($type, $quality);
+        $videoSource = $this->getVideoSource($type, $format->getQuality());
         if($videoSource !== null){
             $vidUrl = $videoSource['url'];
 

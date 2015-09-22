@@ -52,14 +52,13 @@ class VideoCollection
 
     /**
      * @param string $folderPath
-     * @param string $type
-     * @param string $quality
+     * @param Format $format
      * @return bool
      */
-    public function downloadAll($folderPath='../cache/videos/', $type=Format::TYPE_MP4, $quality=null){
+    public function downloadAll($folderPath='../cache/videos/', $format=null){
         $success = true;
         foreach($this->videoIds as $index=>$videoId){
-            $success = $success && $this->getVideoBits($index)->download($folderPath, $type, $quality);
+            $success = $success && $this->getVideoBits($index)->download($folderPath, $format);
             if(!$success){
                 break;
             }
