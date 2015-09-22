@@ -94,12 +94,12 @@ class VideoBits
     }
 
     /**
+     * @param string $folderPath
      * @param string $type
      * @param string $quality
-     * @param string $folderPath
      * @return bool
      */
-    public function download($type=Format::TYPE_MP4, $quality=null, $folderPath='../cache/videos/'){
+    public function download($folderPath='../cache/videos/', $type=Format::TYPE_MP4, $quality=null){
         $success = false;
 
         if (!is_dir($folderPath)) {

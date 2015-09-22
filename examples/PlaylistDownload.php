@@ -12,4 +12,4 @@ error_reporting(-1);
 $playlistId = 'PLkRSD11r9mB_HbAxcCdYs7kMQOTzrDokj';
 
 $videos = VideoCollection::fromPlaylist($playlistId);
-$videos->downloadAll('video/mp4', 'hd720', '../cache/videos/');
+$videos->downloadAll('../cache/videos/', 'video/mp4');
