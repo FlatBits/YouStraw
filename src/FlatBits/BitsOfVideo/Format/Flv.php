@@ -2,7 +2,6 @@
 
 namespace FlatBits\BitsOfVideo\Format;
 
-
 use FlatBits\BitsOfVideo\Format;
 
 class Flv extends Format{

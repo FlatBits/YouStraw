@@ -2,7 +2,6 @@
 
 namespace FlatBits\BitsOfVideo\Format;
 
-
 use FlatBits\BitsOfVideo\Format;
 
 class Mp4 extends Format{

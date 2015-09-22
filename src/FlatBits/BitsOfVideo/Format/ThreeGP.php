@@ -2,7 +2,6 @@
 
 namespace FlatBits\BitsOfVideo\Format;
 
-
 use FlatBits\BitsOfVideo\Format;
 
 // 3GP, but php doesn't allow class name starting with number
