@@ -1,3 +1,3 @@
-# Bits of Video - PHP Youtube Audio and Video Extractor
+# YouStraw - PHP Youtube Audio and Video Extractor
 
 Documentation coming soon...

@@ -1,9 +1,9 @@
 {
-    "name": "flatbits/musicbits",
+    "name": "flatbits/youstraw",
     "type": "library",
-    "description": "Open sourced youtube mp3 extractor",
+    "description": "PHP Youtube Audio and Video Extractor",
     "homepage": "http://flatbits.com",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "require": {
         "sunra/php-simple-html-dom-parser": "v1.5.0",
         "php-ffmpeg/php-ffmpeg": "~0.5"

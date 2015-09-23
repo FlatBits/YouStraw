@@ -1,10 +1,11 @@
 <?php
 
-namespace FlatBits\BitsOfVideo\Format;
+namespace FlatBits\YouStraw\Format;
 
-use FlatBits\BitsOfVideo\Format;
+use FlatBits\YouStraw\Format;
 
-class Flv extends Format{
+// 3GP, but php doesn't allow class name starting with number
+class ThreeGP extends Format{
     /**
      * @return array
      */
@@ -16,6 +17,6 @@ class Flv extends Format{
      * @return string
      */
     function getTypeString(){
-        return 'video/x-flv';
+        return 'video/3gpp';
     }
 }

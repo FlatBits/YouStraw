@@ -1,14 +1,14 @@
 <?php
 
-namespace FlatBits\BitsOfVideo;
+namespace FlatBits\YouStraw;
 
 use FlatBits\CurlUtil;
 use Sunra\PhpSimple\HtmlDomParser;
 
-class VideoCollection
+class StrawCollection
 {
     private $videoIds = array();
-    private $videoBitsCache = array();
+    private $strawCache = array();
 
     /**
      * @param string $videoId
@@ -32,22 +32,22 @@ class VideoCollection
 
     /**
      * @param int $index
-     * @return VideoBits|null
+     * @return Straw|null
      */
-    public function getVideoBits($index){
-        $videoBits = null;
+    public function getVideoStraw($index){
+        $straw = null;
 
         if(array_key_exists($index, $this->videoIds)){
             $videoId = $this->videoIds[$index];
 
-            if(array_key_exists($videoId, $this->videoBitsCache)){
-                $videoBits = $this->videoBitsCache[$videoId];
+            if(array_key_exists($videoId, $this->strawCache)){
+                $straw = $this->strawCache[$videoId];
             } else {
-                $this->videoBitsCache[$videoId] = $videoBits = new VideoBits($videoId, $index);
+                $this->strawCache[$videoId] = $straw = new Straw($videoId, $index);
             }
         }
 
-        return $videoBits;
+        return $straw;
     }
 
     /**
@@ -58,7 +58,7 @@ class VideoCollection
     public function downloadAll($folderPath='../cache/videos/', $format=null){
         $success = true;
         foreach($this->videoIds as $index=>$videoId){
-            $success = $success && $this->getVideoBits($index)->download($folderPath, $format);
+            $success = $success && $this->getVideoStraw($index)->download($folderPath, $format);
             if(!$success){
                 break;
             }
@@ -68,10 +68,10 @@ class VideoCollection
 
     /**
      * @param string $playlistId
-     * @return VideoCollection|null A VideoCollection representation from the playlist
+     * @return StrawCollection|null A StrawCollection representation from the playlist
      */
     public static function fromPlaylist($playlistId){
-        $videoCollection = null;
+        $strawCollection = null;
 
         $playListHtmlString = CurlUtil::fetch("https://www.youtube.com/playlist?list=$playlistId");
 
@@ -84,10 +84,10 @@ class VideoCollection
         }
 
         if(!empty($videoIds)){
-            $videoCollection = new VideoCollection();
-            $videoCollection->addVideos($videoIds);
+            $strawCollection = new StrawCollection();
+            $strawCollection->addVideos($videoIds);
         }
 
-        return $videoCollection;
+        return $strawCollection;
     }
 }

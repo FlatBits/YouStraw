@@ -1,9 +1,9 @@
 <?php
 
-namespace FlatBits\BitsOfVideo\Format;
+namespace FlatBits\YouStraw\Format;
 
 use FFMpeg\FFMpeg;
-use FlatBits\BitsOfVideo\Format;
+use FlatBits\YouStraw\Format;
 
 class Flac extends Format{
     /**

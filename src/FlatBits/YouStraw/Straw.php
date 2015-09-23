@@ -1,11 +1,11 @@
 <?php
 
-namespace FlatBits\BitsOfVideo;
+namespace FlatBits\YouStraw;
 
-use FlatBits\BitsOfVideo\Format\Mp4;
+use FlatBits\YouStraw\Format\Mp4;
 use FlatBits\CurlUtil;
 
-class VideoBits
+class Straw
 {
     /**
      * Id of the video it represents

@@ -1,8 +1,8 @@
 <?php
 
-namespace FlatBits\BitsOfVideo\Format;
+namespace FlatBits\YouStraw\Format;
 
-use FlatBits\BitsOfVideo\Format;
+use FlatBits\YouStraw\Format;
 
 class WebM extends Format{
     /**

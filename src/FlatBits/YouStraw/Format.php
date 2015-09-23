@@ -1,6 +1,6 @@
 <?php
 
-namespace FlatBits\BitsOfVideo;
+namespace FlatBits\YouStraw;
 
 
 abstract class Format
