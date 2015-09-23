@@ -1,8 +1,9 @@
 {
     "name": "flatbits/youstraw",
+    "version": "0.1.0",
     "type": "library",
     "description": "PHP Youtube Audio and Video Extractor",
-    "homepage": "http://flatbits.com",
+    "homepage": "https://github.com/FlatBits/YouStraw",
     "license": "MIT",
     "require": {
         "sunra/php-simple-html-dom-parser": "v1.5.0",
