@@ -43,7 +43,7 @@ class StrawCollection
             if(array_key_exists($videoId, $this->strawCache)){
                 $straw = $this->strawCache[$videoId];
             } else {
-                $this->strawCache[$videoId] = $straw = new Straw($videoId, $index);
+                $this->strawCache[$videoId] = $straw = new Straw($videoId, $index+1);
             }
         }
 
