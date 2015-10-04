@@ -54,7 +54,7 @@ abstract class Format
         }
 
         $allowedQualities = [self::QUALITY_HIGH, self::QUALITY_MEDIUM, self::QUALITY_LOW];
-        return array_intersect($allowedQualities, $qualities);
+        return array_values(array_intersect($allowedQualities, $qualities));
     }
 
     /**
