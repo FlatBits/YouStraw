@@ -82,3 +82,5 @@ Please look in the examples folder or through the source code for further usage.
 |---------------------------|---------------------|
 | Mp3                       | High, Medium        |
 | Flac                      | High, Medium        |
+
+More formats will be added in the future, if a format you want is not listed here, please open an issue.
