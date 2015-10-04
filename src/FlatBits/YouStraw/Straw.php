@@ -99,7 +99,7 @@ class Straw
      * @param Format $format
      * @return bool
      */
-    public function download($folderPath='../cache/videos/', $format=null){
+    public function download($folderPath='../cache/videos/', Format $format=null){
         $success = false;
 
         if (!is_dir($folderPath)) {

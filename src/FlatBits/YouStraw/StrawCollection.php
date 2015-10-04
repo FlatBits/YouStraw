@@ -31,6 +31,13 @@ class StrawCollection
     }
 
     /**
+     * @return int
+     */
+    public function count(){
+        return count($this->videoIds);
+    }
+
+    /**
      * @param int $index
      * @return Straw|null
      */
@@ -55,7 +62,7 @@ class StrawCollection
      * @param Format $format
      * @return bool
      */
-    public function downloadAll($folderPath='../cache/videos/', $format=null){
+    public function downloadAll($folderPath='../cache/videos/', Format $format=null){
         $success = true;
         foreach($this->videoIds as $index=>$videoId){
             $success = $success && $this->getVideoStraw($index)->download($folderPath, $format);
