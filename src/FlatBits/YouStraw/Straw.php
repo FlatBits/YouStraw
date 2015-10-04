@@ -99,7 +99,7 @@ class Straw
      * @param Format $format
      * @return bool
      */
-    public function download($folderPath='../cache/videos/', $format=null){
+    public function download($folderPath='../cache/videos/', Format $format=null){
         $success = false;
 
         if (!is_dir($folderPath)) {
@@ -130,9 +130,7 @@ class Straw
             $filename = $folderPath.$prefix.$this->videoTitle.".$ext";
 
             // Download
-            file_put_contents($filename, fopen($vidUrl, 'r'));
-
-            // Invoke the format post download
+            CurlUtil::downloadToFile($vidUrl, $filename);
             $format->postDownload($filename);
 
             $success = true;
