@@ -1,6 +1,8 @@
 # YouStraw
 ### Extract a ~~Tube~~ _Straw_ from YouTube
 
+## This experiment is not supported anymore and will probably not received any update in the future
+
 **Important :** Since the data we need is not provided by Google's official API, this library does not require you to 
 provide an API key or any other credentials. However, the the library heavily relies on undocumented APIs and DOM 
 parsing. For these reason, I do not recommend the use of this library in mission critical environment since it can 
@@ -82,5 +84,3 @@ Please look in the examples folder or through the source code for further usage.
 |---------------------------|---------------------|
 | Mp3                       | High, Medium        |
 | Flac                      | High, Medium        |
-
-More formats will be added in the future, if a format you want is not listed here, please open an issue.
